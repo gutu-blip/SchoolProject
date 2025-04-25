@@ -1,0 +1,205 @@
+
+//Cache a picasso image- the shop profile photo
+//Change cursor color
+//change keypad icon to search
+                                 Functionalities
+                                     23-12-22
+1.Sign In/Sign Up
+2.Upload multiple questions
+  -Scan a photo,extract the questions from it then upload all of them singly all at once
+3.No screenshot functionality
+4.Allow people to read documents offline(only possible on the app)
+5.Text Scanner from Image
+
+-Find gigs and opportunities that suit you and earn money
+-Post any task and we'll find you someone to accomplish it
+-Find software and web developers to assist you with your project
+-Sell anything as an individual or a business in your local campus or other univeristies
+-Get experts to assist you with project work
+
+Sidemenu
+
+-Logout
+-Share App
+-Privacy & Terms
+-Post
+-Profile
+-Your Answers
+
+Marketplace Sidemenu
+
+-Home
+-My Listings
+-Saved Listings
+-Rate App
+-Feedback
+-Feature
+-Log out
+
+Question post
+
+-Let user upvote or downvote an answer
+-Let users be able to save a question and its answer - bookmark
+-Tab that shows questions that a user has answered and lets him edit his answer or delete it
+-Let users comment on every question
+-Let user designate a question that was brought in a test
+
+                                             MarketPlace
+
+Posting an item for sale:
+
+-Specify name - Specify
+-Specify price - Specify
+-Specify category - Select/Specify
+-Upload a photo(s) of the item
+-Describe the product - Specify
+-Condition - Select
+-Location(Mention University) - Select
+-Hostel(Optional) - Specify
+-Room No.(Optional)- Specify
+
+Listing a service for sale
+
+-Description - Specify
+-Type of Service - Specify/Select
+-Upload photo(s) of service(optional)
+-Location(University) - Select
+-Rates - Specify
+-Hostel(Optional) - Specify
+-Room No.(Optional) - Specify
+
+Renting out an item
+
+-Name of item
+-Description
+-Type of item
+-Rates per (minute,hour,day,week,month)
+-Category
+-Upload photo(s)(Mandatory)
+-University
+-Hostel(Optional)
+-Room No.(Optional)
+
+
+Opening a business
+
+-Name of store
+-Bio
+-Profile Photo(Optional)
+-Email
+-Whatsapp Number
+-University
+-Hostel(Optional)
+-Room No.(Optional)
+
+Posting as an Individual
+
+-Name(Use the regsitered name)
+-Profile Photo(Optional)
+-Whatsapp Number
+-University
+-Hostel(Optional)
+-Room No.(Optional)
+
+Product Item(GridLayout)
+
+-Viewpager for photos
+-Title
+-Price
+-Options Btn
+-Bookmark
+
+Service Item(LinearLayout)
+
+-Photo that can go invisible
+-Rates
+-Options Btn
+-Name of service
+-Short Description
+-Bookmark
+
+Product Filters
+-Category
+-Location
+-Search Bar
+-Price Filter
+
+Services Filters
+-Type of Service
+-Location
+-Search Bar
+-Rates filter
+
+Details Activity(Product)
+-Viewpager for images
+-Description
+-Price
+-Name
+-Location
+-Condition
+-Hostel
+-Room No.
+-Similar Section
+
+Details Activity(Services)
+-Viewpager for images
+-Description
+-Rates
+-Type of service
+-Location
+-Hostel
+-Room No.
+-Similar Section
+
+Other functionalities:
+-Push notification
+-View saved Listings
+-View posted Listings and their stats
+-Chat Button that redirects user to the seller
+-Rate a seller
+-A section for posting and viewing gigs
+
+-Have a jobs section where users can share posts about job opportunities
+
+Gigs item layout/Saved Gig Layout
+-Short Description
+-Image(optional)
+-Bookmark
+-Amount(optional)
+-Contact btn
+-College
+-Link
+
+GigsPost
+-Category
+-Amount
+-Description
+-College
+-Phone
+-Leave link
+
+                             TO DO
+-Confirm deletion of a gig from the source when at least one lead is generated
+-check if user is connected to the internet - shopinfoactivity
+
+6.Gigs Section
+  -Tab for viewing gigs
+  -Allow people to post gigs along with clickable links associated with the posts
+7.Rentals Section
+  -Show:Price,Condition,Working shower(yes/no),No. Of Bedrooms,Furnished/Not Furnished
+  -An exclusive rating for water supply
+  -Let the agent upload a screenshot from google maps showing a link between the property and
+  the various colleges nearby
+  -Video functionality to view the entirety of the property
+  -Enable users view photos of the property
+  -Allow tenants to rate a property
+  -Allow tenants to leave comments on the property
+  -Section that gives information about the property
+  -Section that states the location of the property
+
+8.Copy functionality for copying a question
+9.EditText and image uploader on every question for inputting answers
+10.Allow users to post questions and have answers displayed below them more like Stackoverflow
+
+
+I've been developing android apps for 2 years now and I started right after I graduated from high school. I've built and published two apps on Google Playstore, one is called Clade and the other  Ace. Essentially, Clade  is a marketplace exclusively for fashion products and doubles as a platform where people can post outfits that can serve as an inspiration for others to try whereas Ace is also a marketplace but for gigs where students who aren't employed full-time due to such factors as lacking a degree(since they're still college students) or the time to work a full time job can do some transient jobs and earn money to support themselves in college and pay for their tuition fees.Here is the link for Clade: "https://play.google.com/store/apps/details?id=com.lilac.clade" and here is for Ace "https://play.google.com/store/apps/details?id=com.lilac.ace", I'm adept in Java programming language, UI/UX and I really good with firebase server

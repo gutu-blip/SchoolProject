@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <HorizontalScrollView
+            android:id="@+id/horizontalscrollview"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginHorizontal="3dp"
+            android:scrollbars="none"
+            >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.facebook.shimmer.ShimmerFrameLayout
+                    android:id="@+id/shimmer_category"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:shimmer_auto_start="true">
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/Widget.MaterialComponents.Chip.Action"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp"
+                        android:textAlignment="center"
+                        android:textColor="#D7D8D8"
+                        android:text="Category"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        app:chipBackgroundColor="#D7D8D8" />
+
+                </com.facebook.shimmer.ShimmerFrameLayout>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_category"
+                    style="@style/Widget.MaterialComponents.Chip.Action"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="12dp"
+                    android:text="Category"
+                    android:visibility="invisible"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:chipBackgroundColor="@color/black" />
+
+                <com.facebook.shimmer.ShimmerFrameLayout
+                    android:id="@+id/shimmer_college"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/chip_category"
+                    android:layout_marginLeft="6dp"
+                    app:shimmer_auto_start="true">
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/Widget.MaterialComponents.Chip.Action"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp"
+                        android:textAlignment="center"
+                        android:textColor="#FFDABE"
+                        android:text="University"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        app:chipBackgroundColor="#FFCDD2" />
+
+                </com.facebook.shimmer.ShimmerFrameLayout>
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_college"
+                    style="@style/Widget.MaterialComponents.Chip.Action"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="12dp"
+                    android:visibility="invisible"
+                    android:layout_toRightOf="@+id/chip_category"
+                    android:layout_marginLeft="6dp"
+                    android:text="University"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:chipBackgroundColor="@color/black"
+                    />
+
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_price"
+                    style="@style/Widget.MaterialComponents.Chip.Action"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="12dp"
+                    android:layout_toRightOf="@+id/chip_college"
+                    android:layout_marginLeft="6dp"
+                    android:text="Price"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:chipBackgroundColor="@color/black"
+                    />
+            </RelativeLayout>
+        </HorizontalScrollView>
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_search_bar"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="7dp"
+                app:cardBackgroundColor="#F1EEEE"
+                android:layout_marginTop="4dp"
+                app:layout_constraintTop_toBottomOf="@id/horizontalscrollview"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginBottom="8dp"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="0dp"
+                >
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                    android:id="@+id/et_search"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:hint="Search for anything"
+                    android:paddingStart="5dp"
+                    android:imeOptions="actionSearch"
+                    android:popupBackground="@color/colorWhite"
+                    android:layout_centerVertical="true"
+                    android:textColor="@android:color/black"
+                    android:textColorHint="#919191"
+                    android:drawableTint="#919191"
+                    android:textCursorDrawable="@drawable/custom_cursor"
+                    style="@style/ColoredHandleThemeForWholeApp"
+                    android:layout_toEndOf="@+id/iv_search"
+                    />
+
+                <ImageView
+                    android:id="@+id/iv_search"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_search"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="10dp"
+                    app:tint="#7A7A7A"
+                    />
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fab_clear"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:backgroundTint="#000000"
+                    android:clickable="true"
+                    app:elevation="0dp"
+                    android:visibility="gone"
+                    app:fab_elevationCompat="0dp"
+                    android:elevation="0dp"
+                    android:layout_gravity="end"
+                    android:layout_margin="10dp"
+                    android:layout_alignParentEnd="true"
+                    android:src="@drawable/ic_remove"
+                    android:tint="@color/white"
+                    app:fabCustomSize="20dp"
+                    app:maxImageSize="16dp" />
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview"
+            android:layout_width="match_parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cv_search_bar"
+            android:layout_marginTop="4dp"
+            android:layout_height="0dp"/>
+
+        <TextView
+            android:id="@+id/tv_placeholder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="3dp"
+            android:visibility="invisible"
+            android:textColor="@color/black"
+            android:layout_centerHorizontal="true"
+            android:text="There're no shoes listed for sell as of yet."
+            />
+        <TextView
+            android:id="@+id/tv_post"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="@color/accent_red"
+            android:text="Post "
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_placeholder"
+            />
+        <TextView
+            android:id="@+id/tv_some"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:text="some."
+            android:visibility="invisible"
+            app:layout_constraintLeft_toRightOf="@+id/tv_post"
+            app:layout_constraintTop_toBottomOf="@+id/tv_placeholder"
+            android:layout_toEndOf="@id/tv_post"
+            android:layout_below="@id/tv_placeholder"
+            android:layout_marginTop="6.5dp"
+            />
+
+            <ProgressBar
+            android:id="@+id/progress_circle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            style="@android:style/Widget.ProgressBar.Large"
+            android:indeterminate="true"
+            />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>

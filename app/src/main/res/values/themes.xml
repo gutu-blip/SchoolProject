@@ -1,0 +1,48 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.SchoolProject" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
+        <!--    <style name="Theme.SchoolProject" parent="Theme.AppCompat.Light.NoActionBar">-->
+
+        <!-- Primary brand color. -->
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">@color/black</item>
+        <!-- Customize your theme here. -->
+
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+    <style name="expandedBarTextStyle" parent="Theme.SchoolProject">
+        <item name="android:textSize">0sp</item>
+        <item name="android:textColor">@android:color/transparent</item>
+    </style>
+
+    <style name="StatusBarColor" parent="Theme.SchoolProject">
+        <item name="android:statusBarColor">#FF000000
+        </item>
+    </style>
+
+    <style name="CustomTheme" parent="Theme.MaterialComponents.NoActionBar">
+        <item name="colorPrimary">@color/accent_lime</item>
+        <item name="toolbarStyle">@style/ToolbarTheme</item>
+    </style>
+
+    <style name="ThemeOverlay.App.Toolbar.Light." parent="ThemeOverlay.MaterialComponents.Toolbar.Primary">
+        <item name="colorOnPrimary">@color/white</item>
+    </style>
+
+    <style name="SmoothCheckBoxStyle.">
+        <item name="color_checked">@color/accent_lime</item>
+        <item name="color_tick">@color/black</item>
+    </style>
+
+    <style name="ColoredHandleThemeForWholeApp">
+        <item name="colorAccent">@color/black</item>
+    </style>
+</resources>

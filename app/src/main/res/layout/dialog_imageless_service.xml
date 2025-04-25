@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:paddingTop="15dp"
+    >
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="360dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        app:cardElevation="13dp"
+        app:cardCornerRadius="16dp">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/white"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/relativelayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <View
+                    android:id="@+id/btm_gradient"
+                    android:layout_width="fill_parent"
+                    android:layout_height="80dp"
+                    android:layout_gravity="bottom"
+                    android:background="@drawable/title_background_5" />
+
+                <com.facebook.shimmer.ShimmerFrameLayout
+                    android:id="@+id/shimmer_profile_photo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="10dp"
+                    android:padding="1dp"
+                    app:shimmer_base_color="@color/black"
+                    app:shimmer_colored="true"
+                    app:shimmer_duration="1750"
+                    app:shimmer_fixed_width="200dp"
+                    app:shimmer_highlight_color="@color/accent_navy"
+                    app:shimmer_repeat_mode="restart">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@color/black" />
+
+                </com.facebook.shimmer.ShimmerFrameLayout>
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/shop_logo"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="10dp"
+                    android:padding="1dp" />
+
+                <TextView
+                    android:id="@+id/shop_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/shop_logo"
+                    android:layout_marginLeft="8dp"
+                    android:layout_toRightOf="@id/shop_logo"
+                    android:bottom="@+id/shop_logo"
+                    android:text="The Rack"
+                    android:textColor="@color/white"
+                    android:textSize="23sp"
+                    android:textStyle="bold" />
+
+
+                <RatingBar
+                    android:id="@+id/rating_bar"
+                    style="@style/Widget.AppCompat.RatingBar.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/shop_name"
+                    android:layout_alignStart="@id/shop_name"
+                    android:layout_marginTop="3dp"
+                    android:numStars="5"
+                    android:progressBackgroundTint="@color/Black"
+                    android:progressTint="@color/accent_blue"
+                    android:stepSize="0.5" />
+
+                <TextView
+                    android:id="@+id/tv_rating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/rating_bar"
+                    android:layout_marginLeft="4dp"
+                    android:layout_toRightOf="@id/rating_bar"
+                    android:text="2.8"
+                    android:textColor="@color/white"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/btn_chat"
+                    android:layout_width="80dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/custom_button"
+                    android:backgroundTint="@color/accent_lime"
+                    android:paddingHorizontal="6dp"
+                    android:text="Contact"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_posted"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:text="7 Aug 2023"
+                    android:textStyle="bold"
+                    android:layout_marginEnd="10dp"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="13sp"
+                    android:layout_alignBottom="@id/btm_gradient"
+                    android:layout_marginBottom="5dp"
+                    />
+
+            </RelativeLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="70dp"
+                android:padding="7dp"
+                >
+
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Regsitration of Business Certificate"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="21sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    />
+
+
+                        <TextView
+                            android:id="@+id/header_desc"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Description:"
+                            android:textColor="#4E4E4E"
+                            android:layout_marginTop="10dp"
+                            android:textSize="13sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv_name" />
+
+                        <TextView
+                            android:id="@+id/tv_desc"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:maxLines="5"
+                            android:text="@string/dummytext"
+                            android:textColor="@color/Black"
+                            android:textSize="17sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/header_desc" />
+
+                        <TextView
+                            android:id="@+id/header_category"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:text="Category:"
+                            android:textAllCaps="false"
+                            android:textColor="#4E4E4E"
+                            android:textSize="13sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv_desc" />
+
+                        <TextView
+                            android:id="@+id/tv_category"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="3dp"
+                            android:layout_marginEnd="6dp"
+                            android:text="Business Registration"
+                            android:textColor="@color/Black"
+                            android:textSize="16sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/header_category" />
+
+
+                        <TextView
+                            android:id="@+id/header_location"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:text="Location:"
+                            android:textAllCaps="false"
+                            android:textColor="#4E4E4E"
+                            android:textSize="13sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv_category" />
+
+                        <TextView
+                            android:id="@+id/tv_college"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="3dp"
+                            android:layout_marginEnd="6dp"
+                            android:text="MMU"
+                            android:textColor="@color/Black"
+                            android:textSize="16sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/header_location" />
+
+                        <TextView
+                            android:id="@+id/header_hostel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginEnd="6dp"
+                            android:text="Hostel:"
+                            android:textAllCaps="false"
+                            android:textColor="#4E4E4E"
+                            android:textSize="13sp"
+                            android:visibility="gone"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv_college" />
+
+                        <TextView
+                            android:id="@+id/tv_hostel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="3dp"
+                            android:layout_marginEnd="6dp"
+                            android:text="Block A"
+                            android:textColor="@color/Black"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:visibility="gone"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/header_hostel" />
+
+                        <TextView
+                            android:id="@+id/header_room"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:text="Room:"
+                            android:textColor="#4E4E4E"
+                            android:textSize="13sp"
+                            android:visibility="gone"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv_hostel" />
+
+                        <TextView
+                            android:id="@+id/tv_room"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="3dp"
+                            android:layout_marginEnd="6dp"
+                            android:text="212"
+                            android:textColor="@color/Black"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:visibility="gone"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/header_room" />
+
+
+                        <TextView
+                            android:id="@+id/tv_price"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="6dp"
+                            android:textAllCaps="false"
+                            android:textStyle="bold"
+                            android:textColor="@color/Black"
+                            android:textSize="17sp"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_room"
+                            app:layout_constraintStart_toStartOf="parent"
+                            />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+        </ScrollView>
+
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>
+

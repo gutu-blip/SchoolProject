@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="rangeSliderValues">
+        <item>200</item>
+        <item>80000</item>
+
+    </string-array>
+
+    <string name="point1">Find gigs and opportunities that suit you and earn money</string>
+    <string name="point2">Post any task and we\'ll find you someone to accomplish it</string>
+    <string name="point3">Find software and web developers to assist you with your project</string>
+    <string name="point4">Sell anything to your comrades as an individual or a business in your local campus or other universities </string>
+    <string name="point5">Get experts to assist you with project work</string>
+
+    <string name="home">HOME</string>
+    <string name="search">SEARCH</string>
+    <string name="all_categories">ALL CATEGORIES</string>
+    <string name="add_missing_place">ADD MISSING PLACE</string>
+    <string name="login">Login</string>
+    <string name="profile">Profile</string>
+    <string name="logout">Logout</string>
+    <string name="share">Share</string>
+    <string name="rate_us">Rate Us</string>
+    <string name="albumfvrtlist">AlbumfvrtList</string>
+    <string name="app_name">Ace</string>
+    <string name="sample">Save all of your purchases in one place and get to sort shops with the highest recommendations</string>
+    <string name="product_requests_description">You have no active requests</string>
+
+    <string name="ans1">DROP and TRUNCATE commands are the DDL commands which are used to delete tables from the database and once the table gets deleted, all the privileges and indexes that are related to the table also get deleted. These 2 operations cannot be rolled back and so should be used only when necessary.</string>
+    <string name="ans2">DELETE command, on the other hand, is a DML Command which is also used to delete rows from the table and this can be rolled back.</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="default_web_client_id">765958258038-8ijvibislj4i6sr0rnhajevbkipp2drn.apps.googleusercontent.com</string>
+    <string name="dummytext">Lorem ipsum dolor sit amet, consectetursoidcoibcdoiasbdcoibisocdbioasbcdoibacsioicjnkljNXZowqfsYE5DQWYCarzgvtyWXZERtYSCVXZYRUDTEFDI7GXSYHUNJZJGFDGVSYABUHZJSBGYDQTVWUYTURWQFahuzoyhxis7ygfjqwSKHTREDFGAVHZfcVgadsrzTFGYftgyuhgyjfthdrfteywdusacfxh tsygvuhwjqhsygatxfgsyhuqjh bdvjcgfxtzgyhnbgjztxyCGV adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborumSed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</string>
+    <string name="dummytext2">Using different JDK locations on different processes might cause Gradle to spawn multiple daemons, for exampleUsing different JDK locations on different processes might cause Gradle to</string>
+    <string name="favorited_albums">Favorited_Albums</string>
+    <string name="favorited_keys">Favorited_keys</string>
+    <string name="user_ads">User_Ads</string>
+    <string name="speciality">Speciality</string>
+    <string name="product_requests">Product_Requests</string>
+    <string name="product_likes">Product_Likes</string>
+    <string name="fashion_products">Fashion_Products</string>
+    <string name="outfit_styles">Outfit_Styles</string>
+    <string name="products">Products</string>
+    <string name="product_types">Product_Types</string>
+    <string name="metadata">Metadata</string>
+
+
+    <string name="add">Add</string>
+    <string name="user_interests">User_Interests</string>
+    <string name="title_activity_shop_details">ShopDetailsActivity</string>
+
+    //Onboaring Screen Strings
+
+    Integer.parseInt("Pick Outfits"),
+    Integer.parseInt("Pick Clothing"),
+    Integer.parseInt("Pick Footwear"),
+    Integer.parseInt("Pick Accessories")
+    //Headings
+    <string name="pick_outfits">Pick Outfits"</string>
+    <string name="pick_clothing">Pick Clothing</string>
+    <string name="pick_footwear">Pick Footwear</string>
+    <string name="pick_accessories">Pick Accessories</string>
+    //Description
+    <string name="desc_one">Grow your Business By Accepting Card Payments with The New Card Reader</string>
+    <string name="desc_two">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</string>
+    <string name="desc_three">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</string>
+    <string name="desc_fourth">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- TODO: Remove or change this placeholder text -->
+
+
+</resources>

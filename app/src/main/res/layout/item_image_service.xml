@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraint_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_imageview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginVertical="10dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent=".9">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_category"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:layout_marginStart="3dp"
+                android:textStyle="bold"
+                android:layout_toLeftOf="@id/btn_bookmark"
+                android:text="Business Registration Certificate"
+                android:textColor="@color/black" />
+
+            <ImageButton
+                android:id="@+id/btn_bookmark"
+                android:src="@drawable/ic_bookmark"
+                android:background="@android:color/transparent"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                />
+
+            <RelativeLayout
+                android:id="@+id/relativelayout"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_below="@+id/tv_category">
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/viewpager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    />
+
+                <me.relex.circleindicator.CircleIndicator3
+                    android:id="@+id/indicator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_alignBottom="@+id/viewpager"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="14dp"
+                    android:layout_marginBottom="0dp"
+                    />
+
+            </RelativeLayout>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/relativelayout"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:textSize="21sp"
+                        android:text="Looking for someone who can develop a website for a dating"
+                        android:textColor="#AD000000"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_desc"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:paddingStart="5dp"
+                        android:paddingTop="5dp"
+                        android:textSize="14sp"
+                        android:text="@string/dummytext2"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_marginBottom="4dp"
+                    android:id="@+id/relativelayout1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_below="@id/relativelayout">
+                    <TextView
+                        android:id="@+id/tv_amount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Compensation: Ksh. 3000 per page typed"
+                        android:textStyle="bold"
+                        android:layout_marginEnd="2dp"
+                        android:textColor="@color/black"
+                        android:textSize="17sp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/relativelayout0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="-3dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_below="@id/relativelayout1">
+
+                    <View
+                        android:id="@+id/border"
+                        android:layout_width="1dp"
+                        android:layout_height="14dp"
+                        android:layout_marginVertical="2dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_toRightOf="@id/tv_time"
+                        android:background="@android:color/darker_gray"
+                        android:layout_marginBottom="1.5dp"/>
+
+                    <TextView
+                        android:id="@+id/tv_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="5dp"
+                        android:text="19 Nov 2022"
+                        android:textAllCaps="false"
+                        android:textColor="#808080"
+                        android:textSize="13sp"
+                        android:layout_marginBottom="1.5dp"/>
+
+                    <TextView
+                        android:id="@+id/tv_college"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="5dp"
+                        android:layout_toRightOf="@+id/border"
+                        android:text="Technical University of Kenya"
+                        android:textAlignment="gravity"
+                        android:textColor="#808080"
+                        android:textSize="13sp"
+                        android:layout_marginBottom="1.5dp"
+                        />
+
+                </RelativeLayout>
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

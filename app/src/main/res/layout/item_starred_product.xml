@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardview"
+                android:layout_width="match_parent"
+                android:layout_height="500dp"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginVertical="4dp"
+                app:cardCornerRadius="33dp"
+                app:cardElevation="6dp"
+                >
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/imageview"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitXY"
+                        />
+
+
+                    <View
+                        android:layout_width="fill_parent"
+                        android:layout_height="60dp"
+                        android:background="@drawable/title_background_2"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <RelativeLayout
+                        android:id="@+id/relativeLayout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <com.facebook.shimmer.ShimmerFrameLayout
+                            android:id="@+id/shimmer_profile_photo"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginEnd="5dp"
+                            android:layout_marginBottom="5dp"
+                            app:shimmer_base_color="@color/black"
+                            app:shimmer_highlight_color="@color/accent_navy"
+                            app:shimmer_colored="true"
+                            app:shimmer_duration="1750"
+                            app:shimmer_repeat_mode="restart"
+                            >
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:scaleType="centerCrop"
+                                android:src="@color/black"
+                                app:cardCornerRadius="30dp" />
+
+                        </com.facebook.shimmer.ShimmerFrameLayout>
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/profile_photo"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginEnd="5dp"
+                            android:layout_marginBottom="5dp"
+                            android:scaleType="centerCrop"
+                            app:cardCornerRadius="30dp" />
+
+                        <TextView
+                            android:id="@+id/tv_shop_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginTop="3dp"
+                            android:layout_toRightOf="@id/profile_photo"
+                            android:layout_centerVertical="true"
+                            android:fontFamily="sans-serif"
+                            android:text="Fashiona Girl"
+                            android:textColor="@color/white"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                    </RelativeLayout>
+
+                    <ImageView
+                        android:id="@+id/iv_album"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:src="@drawable/ic_album"
+                        android:visibility="invisible"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:layout_margin="10dp"
+                        app:tint="#CBFFFFFF"
+                        />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/cardview"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="0dp">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btn_chat"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:text="Chat"
+                    android:textAllCaps="false"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:backgroundTint="@color/accent_lime"
+                    android:textColor="@color/black"
+                    android:background="@drawable/custom_button"
+                    />
+
+                <RelativeLayout
+                    android:id="@+id/relativelayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btn_chat">
+
+                    <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="260dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="3dp"
+                    android:gravity="start"
+                    android:textColor="@color/black"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true">
+                    <TextView
+                        android:id="@+id/header_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_toLeftOf="@id/tv_price"
+                        android:text="Ksh."
+                        android:textAllCaps="false"
+                        android:textColor="@color/Black"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:textColor="@color/Black"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+                </RelativeLayout>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cv_details"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:outlineAmbientShadowColor="#1DE9B6"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="10dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/relativelayout">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#EEF5FF"
+                        android:padding="10dp">
+
+
+                        <TextView
+                            android:id="@+id/header_condition"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginEnd="6dp"
+                            android:text="Condition:"
+                            android:textAllCaps="false"
+                            android:textColor="#4E4E4E"
+                            android:textSize="14sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/tv_condition"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="6dp"
+                            android:textAllCaps="false"
+                            android:textColor="@color/Black"
+                            android:textSize="19sp"
+                            android:text="New"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/header_condition" />
+
+                        <TextView
+                            android:id="@+id/tv_created"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginEnd="6dp"
+                            android:textAllCaps="false"
+                            android:textColor="@color/Black"
+                            android:textSize="19sp"
+                            android:textStyle="bold"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/header_desc"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="Description:"
+                            android:textAllCaps="false"
+                            android:textColor="#4E4E4E"
+                            android:textSize="14sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv_condition" />
+
+                        <TextView
+                            android:id="@+id/tv_desc"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="@string/dummytext"
+                            android:maxLines="5"
+                            android:fontFamily="sans-serif-medium"
+                            android:textColor="@color/Black"
+                            android:textSize="15sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/header_desc" />
+
+                        <TextView
+                            android:id="@+id/header_location"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="Location:"
+                            android:textAllCaps="false"
+                            android:textColor="#4E4E4E"
+                            android:textSize="13sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv_desc"
+                            />
+
+                        <TextView
+                            android:id="@+id/tv_location"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="6dp"
+                            android:textStyle="bold"
+                            android:text="MMU"
+                            android:textColor="@color/Black"
+                            android:textSize="19sp"
+                            android:layout_marginLeft="3dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/header_location"
+                            />
+
+                        <TextView
+                            android:id="@+id/header_hostel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="6dp"
+                            android:text="Hostel:"
+                            android:textAllCaps="false"
+                            android:textColor="#4E4E4E"
+                            android:textSize="13sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv_location"
+                            />
+
+                        <TextView
+                            android:id="@+id/tv_hostel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="6dp"
+                            android:text="Block A"
+                            android:textStyle="bold"
+                            android:layout_marginTop="5dp"
+                            android:textColor="@color/Black"
+                            android:textSize="18sp"
+                            android:layout_marginLeft="3dp"
+                            app:layout_constraintLeft_toRightOf="@+id/header_hostel"
+                            app:layout_constraintTop_toBottomOf="@id/tv_location"
+                            />
+
+                        <TextView
+                            android:id="@+id/header_room"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="Room:"
+                            android:textColor="#4E4E4E"
+                            android:textSize="13sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/header_hostel" />
+
+                        <TextView
+                            android:id="@+id/tv_room"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="6dp"
+                            android:text="212"
+                            android:textStyle="bold"
+                            android:textColor="@color/Black"
+                            android:textSize="18sp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginLeft="3dp"
+                            app:layout_constraintLeft_toRightOf="@+id/header_room"
+                            app:layout_constraintTop_toBottomOf="@id/header_hostel" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </RelativeLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="350dp"
+        android:id="@+id/cardview"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        app:cardCornerRadius="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="20dp"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_search"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:text="Phone"
+                android:textSize="20sp"
+                />
+
+            <TextView
+                android:id="@+id/tv_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_search"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:textColor="@color/colorDarkSemiTransparent"
+                android:layout_marginBottom="10dp"
+                android:textStyle="bold"
+                android:text="0729309334"
+                android:textSize="18sp"
+                />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_search"
+                android:layout_marginTop="5dp"
+                android:text="Email"
+                android:textSize="20sp"
+                />
+
+            <TextView
+                android:id="@+id/tv_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_search"
+                android:textColor="@color/colorDarkSemiTransparent"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:text="littleparis@gmail.com"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_email"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="15dp"
+                android:text="University"
+                android:textSize="20sp"
+                />
+            <TextView
+                android:id="@+id/tv_college"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_header_location"
+                android:layout_marginStart="10dp"
+                android:textStyle="bold"
+                android:textColor="@color/colorDarkSemiTransparent"
+                android:text="Multimedia University"
+                android:textSize="18sp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="15dp"
+                android:text="Hostel"
+                android:textSize="20sp"
+                />
+            <TextView
+                android:id="@+id/tv_hostel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:textStyle="bold"
+                android:textColor="@color/colorDarkSemiTransparent"
+                android:text="Twiga"
+                android:textSize="18sp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="15dp"
+                android:text="Room"
+                android:textSize="20sp"
+                />
+            <TextView
+                android:id="@+id/tv_room"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:textStyle="bold"
+                android:textColor="@color/colorDarkSemiTransparent"
+                android:text="213"
+                android:textSize="18sp"
+                />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+    <Button
+        android:id="@+id/btn_dismiss"
+        android:text="Close"
+        android:textAllCaps="false"
+        android:background="@drawable/custom_button"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:layout_below="@id/cardview"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="70dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+</RelativeLayout>
