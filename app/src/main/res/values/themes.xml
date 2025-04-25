@@ -30,14 +30,14 @@
 
     <style name="CustomTheme" parent="Theme.MaterialComponents.NoActionBar">
         <item name="colorPrimary">@color/accent_lime</item>
-        <item name="toolbarStyle">@style/ToolbarTheme</item>
+<!--        <item name="toolbarStyle">@style/ToolbarTheme</item>-->
     </style>
 
     <style name="ThemeOverlay.App.Toolbar.Light." parent="ThemeOverlay.MaterialComponents.Toolbar.Primary">
         <item name="colorOnPrimary">@color/white</item>
     </style>
 
-    <style name="SmoothCheckBoxStyle.">
+    <style name="SmoothCheckBoxStyle">
         <item name="color_checked">@color/accent_lime</item>
         <item name="color_tick">@color/black</item>
     </style>

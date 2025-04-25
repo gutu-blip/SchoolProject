@@ -27,7 +27,7 @@
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Ace">
+        android:theme="@style/Theme.SchoolProject">
 
         <activity
             android:name=".Activites.SplashScreen"
@@ -43,12 +43,12 @@
         <activity android:name=".Activites.ServiceListing" />
         <activity android:name=".Activites.ProductListing" />
         <activity android:name=".Activites.ProductStatsActivity" />
-        <activity android:name="com.lilac.ace.Activites.FragmentMerger" />
-        <activity android:name="com.lilac.ace.Activites.ProfileShopActivity" />
-        <activity android:name="com.lilac.ace.Activites.MainActivity" />
-        <activity android:name="com.lilac.ace.Activites.SavedMerger" />
-        <activity android:name="com.lilac.ace.Activites.ShopInfoActivity" />
-        <activity android:name="com.lilac.ace.Activites.GigListing" />
+        <activity android:name="com.example.schoolproject.Activites.FragmentMerger" />
+        <activity android:name="com.example.schoolproject.Activites.ProfileShopActivity" />
+        <activity android:name="com.example.schoolproject.Activites.MainActivity" />
+        <activity android:name="com.example.schoolproject.Activites.SavedMerger" />
+        <activity android:name="com.example.schoolproject.Activites.ShopInfoActivity" />
+        <activity android:name="com.example.schoolproject.Activites.GigListing" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

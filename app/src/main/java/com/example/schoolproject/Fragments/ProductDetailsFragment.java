@@ -89,7 +89,6 @@ import com.example.schoolproject.Activites.FragmentMerger;
 import com.example.schoolproject.Adapters.ListingsAdapter;
 import com.example.schoolproject.Adapters.ServiceAdapter;
 import com.example.schoolproject.Adapters.VPSliderAdapter;
-import com.example.schoolproject.BuildConfig;
 import com.example.schoolproject.Interface.CallBackListener;
 import com.example.schoolproject.Interface.DeleteListener;
 import com.example.schoolproject.Models.Listing;
@@ -1093,7 +1092,7 @@ public class ProductDetailsFragment extends Fragment implements CallBackListener
             stream.close();
 
             uri = FileProvider.getUriForFile(Objects.requireNonNull(context.getApplicationContext()),
-                    BuildConfig.APPLICATION_ID + ".provider", file);
+                    context.getPackageName() + ".provider", file);
         } catch (IOException e) {
             e.printStackTrace();
         }

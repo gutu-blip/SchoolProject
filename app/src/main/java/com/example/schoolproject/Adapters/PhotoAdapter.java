@@ -54,7 +54,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.example.schoolproject.BuildConfig;
 import com.example.schoolproject.Models.Listing;
 import com.example.schoolproject.Models.Seller;
 import com.example.schoolproject.R;
@@ -570,7 +569,7 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.ViewHolder> 
             stream.close();
 
             uri = FileProvider.getUriForFile(Objects.requireNonNull(context.getApplicationContext()),
-                    BuildConfig.APPLICATION_ID + ".provider", file);
+                    context.getPackageName() + ".provider", file);
         } catch (IOException e) {
             e.printStackTrace();
         }

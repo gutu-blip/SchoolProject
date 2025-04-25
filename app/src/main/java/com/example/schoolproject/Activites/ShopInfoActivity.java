@@ -61,7 +61,6 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.example.schoolproject.Adapters.BtmSheetAdapter;
 import com.example.schoolproject.Adapters.ListAdapter;
-import com.example.schoolproject.BuildConfig;
 import com.example.schoolproject.Interface.LoadText;
 import com.example.schoolproject.Models.Item;
 import com.example.schoolproject.Models.Seller;
@@ -756,7 +755,7 @@ public class ShopInfoActivity extends AppCompatActivity implements LoadText {
             stream.close();
 
             uri = FileProvider.getUriForFile(Objects.requireNonNull(context.getApplicationContext()),
-                    BuildConfig.APPLICATION_ID + ".provider", file);
+                    context.getPackageName() + ".provider", file);
         } catch (IOException e) {
             e.printStackTrace();
         }

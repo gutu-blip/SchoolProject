@@ -11,7 +11,6 @@ import com.example.schoolproject.Mpesa.interfaces.TokenListener;
 
 import java.io.UnsupportedEncodingException;
 
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import rx.Subscriber;
 import rx.schedulers.Schedulers;
 import rx.subscriptions.CompositeSubscription;

@@ -1,7 +1,6 @@
 package com.example.schoolproject.Models;
 
 import com.google.firebase.database.Exclude;
-
 import java.util.ArrayList;
 
 public class Question {
