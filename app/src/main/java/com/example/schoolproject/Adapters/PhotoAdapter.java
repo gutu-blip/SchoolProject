@@ -2,6 +2,7 @@ package com.example.schoolproject.Adapters;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.ComponentName;
 import android.content.ContentResolver;
@@ -63,7 +64,9 @@ import com.squareup.picasso.Picasso;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.URL;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -413,169 +416,87 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.ViewHolder> 
 
         private void requestPermission(Bitmap bitmap, String userId, Listing listing) {
             if (ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-                shareImage(bitmap, userId, listing);
+                    String phoneNumber = "254745478951"; // Example Kenyan number (no +)
+                    String message = "Say something";
+
+                String cleanNumber = cleanPhoneNumber(listing.getSellerPhone());
+                downloadAndSendWhatsAppImage(context,cleanNumber,message, listing.getImageUrl());
+
             } else {
                 requestPermissionLauncher.launch(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE});
             }
         }
+        private String cleanPhoneNumber(String phoneNumber) {
+            return phoneNumber.replaceFirst("^\\+", "");
+        }
 
-        private void shareImage(Bitmap bitmap, String userId, Listing listing) {
+        private void downloadAndSendWhatsAppImage(Context context, String phoneNumber, String message, String imageUrl) {
+            new Thread(() -> {
+                try {
+                    // Step 1: Download image
+                    URL url = new URL(imageUrl);
+                    InputStream inputStream = url.openStream();
+                    File file = new File(context.getCacheDir(), "shared_image.jpg"); // context.getCacheDir()
+
+                    FileOutputStream outputStream = new FileOutputStream(file);
+                    byte[] buffer = new byte[4096];
+                    int bytesRead;
+
+                    while ((bytesRead = inputStream.read(buffer)) != -1) {
+                        outputStream.write(buffer, 0, bytesRead);
+                    }
+
+                    outputStream.close();
+                    inputStream.close();
+
+                    // Step 2: Get Uri with FileProvider
+                    Uri uri = FileProvider.getUriForFile(context, context.getPackageName() + ".provider", file);
+
+                    // Step 3: Send via WhatsApp on UI thread
+                    ((Activity) context).runOnUiThread(() -> sendWhatsAppMessageWithImage(phoneNumber, message, uri));
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    ((Activity) context).runOnUiThread(() ->
+                            Toast.makeText(context, "Failed to download image", Toast.LENGTH_SHORT).show()
+                    );
+                }
+            }).start();
+        }
+
+
+        private void sendWhatsAppMessageWithImage(String phoneNumber, String message, Uri imageUri) {
+            PackageManager packageManager = context.getApplicationContext().getPackageManager();
+            Intent intent = new Intent();
+            intent.setAction(Intent.ACTION_SEND);
+            intent.setType("image/*");
+
+            intent.putExtra(Intent.EXTRA_STREAM, imageUri);
+            intent.putExtra(Intent.EXTRA_TEXT, message);
+            intent.putExtra("jid", phoneNumber + "@s.whatsapp.net"); // Target number
+
             try {
-                Uri imageUri;
-                OutputStream outputStream;
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                    ContentValues contentValues = new ContentValues();
-                    contentValues.put(MediaStore.MediaColumns.DISPLAY_NAME, "listing_image.jpg");
-                    contentValues.put(MediaStore.MediaColumns.MIME_TYPE, "image/jpeg");
-                    contentValues.put(MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_PICTURES);
-                    Uri uri = context.getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues);
-                    outputStream = context.getContentResolver().openOutputStream(uri);
-                    imageUri = uri;
+                // Try WhatsApp Business first
+                intent.setPackage("com.whatsapp.w4b");
+                if (intent.resolveActivity(packageManager) != null) {
+                    context.startActivity(intent);
                 } else {
-                    String imagePath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).toString();
-                    File image = new File(imagePath, "listing_image.jpg");
-                    outputStream = new FileOutputStream(image);
-                    imageUri = Uri.fromFile(image);
+                    // Fallback to normal WhatsApp
+                    intent.setPackage("com.whatsapp");
+                    if (intent.resolveActivity(packageManager) != null) {
+                        context.startActivity(intent);
+                    } else {
+                        Toast.makeText(context, "Neither WhatsApp nor WhatsApp Business is installed.", Toast.LENGTH_SHORT).show();
+                    }
                 }
-                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
-                outputStream.flush();
-                outputStream.close();
-
-                Intent shareIntent = new Intent(Intent.ACTION_SEND);
-                shareIntent.setType("image/*");
-                shareIntent.putExtra(Intent.EXTRA_STREAM, imageUri);
-                shareIntent.putExtra(Intent.EXTRA_TEXT, "Check out this listing from Ace!\n" + listing.getName());
-                context.startActivity(Intent.createChooser(shareIntent, "Share via"));
             } catch (Exception e) {
-                Toast.makeText(context, "Failed to share image.", Toast.LENGTH_SHORT).show();
-            }
-        }
-        private void chat(Bitmap resource, String currentUser, Listing listing) {
-            GoogleSignInAccount signInAccount = GoogleSignIn.getLastSignedInAccount(context);
-
-            mStatsRef.child("Leads").child(listing.getPostKey()).child(currentUser).child("name")
-                    .setValue(signInAccount.getDisplayName());
-            mStatsRef.child("Leads").child(listing.getPostKey()).child(currentUser).child("userId").
-                    setValue(currentUser);
-
-            if (isAppInstalled(context, "com.whatsapp.w4b")) {
-
-                try {
-                    saveImageToGallery(resource, listing, listing.getName());
-                    openWhatsApp(listing.getSellerPhone());
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            } else if (isAppInstalled(context, "com.whatsapp")) {
-
-                try {
-                    saveImageToGallery(resource, listing, listing.getName());
-                    openWhatsApp(listing.getSellerPhone());
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            } else {
-                Toast.makeText(context, "Whatsapp not installed on your device", Toast.LENGTH_SHORT).show();
-            }
-
-        }
-
-        private void saveImageToGallery(Bitmap bitmap, Listing listing, @NonNull String name) throws IOException {
-            boolean saved;
-            OutputStream fos;
-
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                ContentResolver resolver = context.getContentResolver();
-                ContentValues contentValues = new ContentValues();
-                contentValues.put(MediaStore.MediaColumns.DISPLAY_NAME, name);
-                contentValues.put(MediaStore.MediaColumns.MIME_TYPE, "image/png");
-                contentValues.put(MediaStore.MediaColumns.RELATIVE_PATH, "Pictures/" + "CladeInterests");
-                Uri imageUri = resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues);
-                fos = resolver.openOutputStream(imageUri);
-            } else {
-                String imagesDir = Environment.getExternalStoragePublicDirectory(
-                        Environment.DIRECTORY_PICTURES).toString() + File.separator + "CladeInterests";
-
-                File file = new File(imagesDir);
-
-                if (!file.exists()) {
-                    file.mkdir();
-                }
-
-                File image = new File(imagesDir, name + ".png");
-                fos = new FileOutputStream(image);
-
-                scanner(image.getAbsolutePath(), listing);
-
-            }
-
-            saved = bitmap.compress(Bitmap.CompressFormat.PNG, 100, fos);
-            fos.flush();
-            fos.close();
-        }
-
-        private void scanner(String path, Listing listing) {
-
-            MediaScannerConnection.scanFile(context,
-                    new String[]{path}, null,
-                    new MediaScannerConnection.OnScanCompletedListener() {
-
-                        public void onScanCompleted(String path, Uri uri) {
-
-                            openWhatsApp(listing.getSellerPhone());
-                        }
-                    });
-        }
-
-        private void openWhatsApp(String number) {
-            try {
-                number = number.replace(" ", "").replace("+", "");
-
-                Intent sendIntent = new Intent("android.intent.action.MAIN");
-                sendIntent.setComponent(new ComponentName("com.whatsapp", "com.whatsapp.Conversation"));
-                sendIntent.putExtra("jid", PhoneNumberUtils.stripSeparators(number) + "@s.whatsapp.net");
-                context.startActivity(sendIntent);
-
-            } catch (Exception e) {
+                e.printStackTrace();
+                Toast.makeText(context, "Error opening WhatsApp", Toast.LENGTH_SHORT).show();
             }
         }
 
-        private boolean isAppInstalled(Context ctx, String packageName) {
-            PackageManager pm = ctx.getApplicationContext().getPackageManager();
-            boolean app_installed;
-            try {
-                pm.getPackageInfo(packageName, PackageManager.GET_ACTIVITIES);
-                app_installed = true;
-            } catch (PackageManager.NameNotFoundException e) {
-                app_installed = false;
-            }
-            return app_installed;
-        }
 
     }
-
-    private static Uri saveImage(Bitmap image, Context context) {
-
-        File imagefolder = new File(context.getCacheDir(), "images");
-        Uri uri = null;
-        try {
-            imagefolder.mkdirs();
-            File file = new File(imagefolder, "shared_images.jpg");
-
-            FileOutputStream stream = new FileOutputStream(file);
-            image.compress(Bitmap.CompressFormat.JPEG, 90, stream);
-            stream.flush();
-            stream.close();
-
-            uri = FileProvider.getUriForFile(Objects.requireNonNull(context.getApplicationContext()),
-                    context.getPackageName() + ".provider", file);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return uri;
-    }
-
 
     public interface RemoveListener {
         void onRemove(Uri uri);

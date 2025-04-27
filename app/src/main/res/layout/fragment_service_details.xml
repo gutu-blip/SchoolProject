@@ -71,7 +71,7 @@
                     android:textColor="@color/white"
                     android:textSize="23sp"
                     android:textStyle="bold" />
-
+*
                 <RatingBar
                     android:id="@+id/rating_bar"
                     style="@style/Widget.AppCompat.RatingBar.Small"

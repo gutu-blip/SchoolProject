@@ -4,7 +4,6 @@ import static android.content.Context.MODE_PRIVATE;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -35,7 +34,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -57,17 +55,14 @@ import com.example.schoolproject.Interface.DeleteListener;
 import com.example.schoolproject.Interface.LoadText;
 import com.example.schoolproject.Models.Item;
 import com.example.schoolproject.Models.Listing;
-import com.example.schoolproject.Models.Seller;
 import com.example.schoolproject.Models.ServiceItem;
 import com.example.schoolproject.R;
-import com.squareup.picasso.Picasso;
 
 import java.lang.reflect.Type;
 import java.text.DecimalFormat;
 import java.time.temporal.ValueRange;
 import java.util.ArrayList;
 
-import de.hdodenhof.circleimageview.CircleImageView;
 import jp.wasabeef.recyclerview.adapters.SlideInBottomAnimationAdapter;
 import jp.wasabeef.recyclerview.adapters.SlideInRightAnimationAdapter;
 
@@ -636,85 +631,6 @@ public class ServicesPosts extends Fragment implements LoadText, HomeFragment.Lo
         } catch (Exception e) {
             Toast.makeText(getActivity(), "" + e, Toast.LENGTH_SHORT).show();
         }
-    }
-
-    public void dialogEvent(Listing listing) {
-
-        Dialog dialog = new Dialog(getActivity());
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-
-        dialog.setContentView(R.layout.dialog_imageless_service);
-
-        TextView mCollege = dialog.findViewById(R.id.tv_college);
-        TextView mShopName = dialog.findViewById(R.id.shop_name);
-        TextView mTitle = dialog.findViewById(R.id.tv_name);
-        TextView mHostel = dialog.findViewById(R.id.tv_hostel);
-        TextView mRoom = dialog.findViewById(R.id.tv_room);
-        TextView mCategory = dialog.findViewById(R.id.tv_category);
-        mRating = dialog.findViewById(R.id.tv_rating);
-        mRatingBar = dialog.findViewById(R.id.rating_bar);
-        TextView mTime = dialog.findViewById(R.id.tv_posted);
-        TextView mPrice = dialog.findViewById(R.id.tv_price);
-        TextView mDesc = dialog.findViewById(R.id.tv_desc);
-        Button btnChat = dialog.findViewById(R.id.btn_chat);
-        ShimmerFrameLayout shimmerLogo = dialog.findViewById(R.id.shimmer_profile_photo);
-        CircleImageView shopLogo = dialog.findViewById(R.id.shop_logo);
-
-        dialog.show();
-
-        if (listing.getListingSource().equals("shop")) {
-            database.getReference("Profiles").child(listing.getUserID()).child("Shops").child(listing.getSellerKey())
-                    .addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                            Seller seller = snapshot.child("Profile").getValue(Seller.class);
-
-                            if (seller != null) {
-                                mCollege.setText(seller.getCollege());
-                                mShopName.setText(seller.getName());
-
-                                shimmerLogo.setVisibility(View.INVISIBLE);
-                                Picasso.get()
-                                        .load(seller.getProfilePhoto())
-                                        .into(shopLogo);
-                            }
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
-                    });
-        } else {
-            mCollege.setText(listing.getLocation());
-            mShopName.setText(listing.getSellerName());
-            shimmerLogo.setVisibility(View.INVISIBLE);
-
-            Picasso.get()
-                    .load(listing.getSellerPhoto())
-                    .into(shopLogo);
-        }
-
-        String listingName = listing.getName();
-        int price = listing.getPrice();
-        String desc = listing.getDescription();
-
-        mTitle.setText(listingName);
-        mDesc.setText(desc);
-        mPrice.setText(Integer.toString(price));
-
-        getRating(listing);
-        btnChat.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-
-                Intent intent = new Intent();
-                intent.setAction(Intent.ACTION_SEND);
-                intent.setType("text/plain");
-                intent.putExtra(Intent.EXTRA_TEXT, "Say something");
-                startActivity(Intent.createChooser(intent, "ShareVia"));
-            }
-        });
     }
 
     @Override

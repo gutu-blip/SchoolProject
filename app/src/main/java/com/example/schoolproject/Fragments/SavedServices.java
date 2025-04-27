@@ -7,7 +7,10 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -23,6 +26,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -48,6 +52,10 @@ import com.example.schoolproject.R;
 import com.example.schoolproject.Utils.Utils;
 import com.squareup.picasso.Picasso;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.net.URL;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
@@ -341,40 +349,106 @@ public class SavedServices extends Fragment implements CallBackListener {
                         .setValue(signInAccount.getDisplayName());
                 mLeadsRef.child(listing.getPostKey()).child(currentUser).child("userId").setValue(currentUser);
 
-                if (isAppInstalled(context, "com.whatsapp.w4b")) {
-                    openWhatsApp(listing.getSellerPhone(),context);
-                } else if (isAppInstalled(context, "com.whatsapp")) {
-                    openWhatsApp(listing.getSellerPhone(),context);
-                } else {
-                    Toast.makeText(context, "Whatsapp not installed on your device", Toast.LENGTH_SHORT).show();
-                }
+                String message = "Say something";
+                String cleanNumber = cleanPhoneNumber(listing.getSellerPhone());
+
+                sendWhatsAppMessage(context, cleanNumber, message);
             }
         });
     }
+    private String cleanPhoneNumber(String phoneNumber) {
+        return phoneNumber.replaceFirst("^\\+", "");
+    }
+    private void sendWhatsAppMessage(Context context, String phoneNumber, String message) {
+        PackageManager packageManager = context.getPackageManager();
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_SEND);
+        intent.setType("text/plain"); // <-- No image, only text now
 
-    private void openWhatsApp(String number,Context context) {
+        intent.putExtra(Intent.EXTRA_TEXT, message);
+        intent.putExtra("jid", phoneNumber + "@s.whatsapp.net"); // WhatsApp JID format
+
         try {
-            number = number.replace(" ", "").replace("+", "");
-
-            Intent sendIntent = new Intent("android.intent.action.MAIN");
-            sendIntent.setComponent(new ComponentName("com.whatsapp", "com.whatsapp.Conversation"));
-            sendIntent.putExtra("jid", PhoneNumberUtils.stripSeparators(number) + "@s.whatsapp.net");
-            context.startActivity(sendIntent);
-
+            // Try WhatsApp Business first
+            intent.setPackage("com.whatsapp.w4b");
+            if (intent.resolveActivity(packageManager) != null) {
+                context.startActivity(intent);
+            } else {
+                // Fallback to normal WhatsApp
+                intent.setPackage("com.whatsapp");
+                if (intent.resolveActivity(packageManager) != null) {
+                    context.startActivity(intent);
+                } else {
+                    Toast.makeText(context, "Neither WhatsApp nor WhatsApp Business is installed.", Toast.LENGTH_SHORT).show();
+                }
+            }
         } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(context, "Error opening WhatsApp", Toast.LENGTH_SHORT).show();
         }
     }
 
-    private boolean isAppInstalled(Context ctx, String packageName) {
-        PackageManager pm = ctx.getApplicationContext().getPackageManager();
-        boolean app_installed;
+    private void downloadAndSendWhatsAppImage(Context context, String phoneNumber, String message, String imageUrl) {
+        new Thread(() -> {
+            try {
+                URL url = new URL(imageUrl);
+                InputStream inputStream = url.openStream();
+                File file = new File(context.getCacheDir(), "shared_image.jpg");
+
+                FileOutputStream outputStream = new FileOutputStream(file);
+                byte[] buffer = new byte[4096];
+                int bytesRead;
+
+                while ((bytesRead = inputStream.read(buffer)) != -1) {
+                    outputStream.write(buffer, 0, bytesRead);
+                }
+
+                outputStream.close();
+                inputStream.close();
+
+                Uri uri = FileProvider.getUriForFile(context, context.getPackageName() + ".provider", file);
+
+                // Post to main thread
+                new Handler(Looper.getMainLooper()).post(() -> {
+                    sendWhatsAppMessageWithImage(context, phoneNumber, message, uri);
+                });
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                new Handler(Looper.getMainLooper()).post(() ->
+                        Toast.makeText(context, "Failed to download image", Toast.LENGTH_SHORT).show()
+                );
+            }
+        }).start();
+    }
+
+    private void sendWhatsAppMessageWithImage(Context context, String phoneNumber, String message, Uri imageUri) {
+        PackageManager packageManager = context.getPackageManager();
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_SEND);
+        intent.setType("image/*");
+
+        intent.putExtra(Intent.EXTRA_STREAM, imageUri);
+        intent.putExtra(Intent.EXTRA_TEXT, message);
+        intent.putExtra("jid", phoneNumber + "@s.whatsapp.net");
+
         try {
-            pm.getPackageInfo(packageName, PackageManager.GET_ACTIVITIES);
-            app_installed = true;
-        } catch (PackageManager.NameNotFoundException e) {
-            app_installed = false;
+            // Try WhatsApp Business first
+            intent.setPackage("com.whatsapp.w4b");
+            if (intent.resolveActivity(packageManager) != null) {
+                context.startActivity(intent);
+            } else {
+                intent.setPackage("com.whatsapp");
+                if (intent.resolveActivity(packageManager) != null) {
+                    context.startActivity(intent);
+                } else {
+                    Toast.makeText(context, "Neither WhatsApp nor WhatsApp Business is installed.", Toast.LENGTH_SHORT).show();
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(context, "Error opening WhatsApp", Toast.LENGTH_SHORT).show();
         }
-        return app_installed;
     }
 
     @Override
@@ -382,6 +456,8 @@ public class SavedServices extends Fragment implements CallBackListener {
         Listing listing = (Listing) items.get(position).getObject();
 
         if (!listing.getImageUrl().isEmpty()) {
+            Toast.makeText(getActivity(), "SavedServices", Toast.LENGTH_SHORT).show();
+
             Intent intent = new Intent(getActivity(), SavedMerger.class);
 
             intent.putExtra("service", listing);

@@ -3,14 +3,17 @@ package com.example.schoolproject.Adapters;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -178,7 +181,6 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         CallBackListener mCallbackListener;
         DeleteListener mDeleteListener;
         int leadsCount = 0;
-
         public ViewHolder(@NonNull View itemView, LoadText loadText, CallBackListener callBackListener,
                           DeleteListener deleteListener) {
             super(itemView);
@@ -286,7 +288,46 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
                     }
                 }
             });
+
+//                btnChat.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//
+//                    if (isAppInstalled(context, "com.whatsapp.w4b")) {
+//                        openWhatsApp(listing.getSellerPhone(), context);
+//                    } else if (isAppInstalled(context, "com.whatsapp")) {
+//                        openWhatsApp(listing.getSellerPhone(), context);
+//                    } else {
+//                        Toast.makeText(context, "Whatsapp not installed on your device", Toast.LENGTH_SHORT).show();
+//                    }
+//                }
+//
+//            });
         }
+
+//        private boolean isAppInstalled(Context ctx, String packageName) {
+//            PackageManager pm = ctx.getApplicationContext().getPackageManager();
+//            boolean app_installed;
+//            try {
+//                pm.getPackageInfo(packageName, PackageManager.GET_ACTIVITIES);
+//                app_installed = true;
+//            } catch (PackageManager.NameNotFoundException e) {
+//                app_installed = false;
+//            }
+//            return app_installed;
+//        }
+//
+//        private void openWhatsApp(String phoneNumber, Context context) {
+//            try {
+//                String url = "https://wa.me/" + phoneNumber;
+//                Intent intent = new Intent(Intent.ACTION_VIEW);
+//                intent.setData(Uri.parse(url));
+//                context.startActivity(intent);
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//                Toast.makeText(context, "Unable to open WhatsApp", Toast.LENGTH_SHORT).show();
+//            }
+//        }
 
         public void bindList(Item item) {
 

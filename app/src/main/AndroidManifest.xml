@@ -40,9 +40,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Activites.Register" />
         <activity android:name=".Activites.ServiceListing" />
         <activity android:name=".Activites.ProductListing" />
         <activity android:name=".Activites.ProductStatsActivity" />
+<!--        <activity android:name=".Activites.GigListing" />-->
+
         <activity android:name="com.example.schoolproject.Activites.FragmentMerger" />
         <activity android:name="com.example.schoolproject.Activites.ProfileShopActivity" />
         <activity android:name="com.example.schoolproject.Activites.MainActivity" />

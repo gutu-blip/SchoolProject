@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.view.animation.OvershootInterpolator;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -144,6 +145,8 @@ public class SavedProducts extends Fragment implements CallBackListener {
 
     @Override
     public void callBack(int position) {
+
+
         Intent intent = new Intent(getActivity(), SavedMerger.class);
 
         intent.putExtra("product", mProducts.get(position));

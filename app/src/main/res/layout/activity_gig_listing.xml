@@ -212,5 +212,5 @@
         </RelativeLayout>
     </ScrollView>
 
-<!--            <include layout="@layout/btm_sheet_recycler" />-->
+            <include layout="@layout/btm_sheet_recycler" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

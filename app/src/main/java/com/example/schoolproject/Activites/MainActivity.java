@@ -96,8 +96,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tapTarget();
         checkVersion();
         fetchLinks();
-
-
     }
 
     private void fetchLinks() {

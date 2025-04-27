@@ -25,6 +25,8 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.Looper;
 import android.provider.MediaStore;
 import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
@@ -100,7 +102,9 @@ import com.squareup.picasso.Picasso;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.URL;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -187,10 +191,10 @@ public class ProductDetailsFragment extends Fragment implements CallBackListener
         setListeners();
         fetchSimilarProduct();
         bookmarkEvent();
-        followEvent();
         setViewPager();
         if (listingSource.equals("shop")) {
             shopInfo();
+            followEvent();
         }
         if (trade.equals("Products")) {
             likeEvent();
@@ -821,15 +825,19 @@ public class ProductDetailsFragment extends Fragment implements CallBackListener
                         btnChat.setOnClickListener(new View.OnClickListener() {
                             public void onClick(View v) {
 
-                                requestPermission(resource);
+                                String message = "Say something";
+                                String cleanNumber = cleanPhoneNumber(listing.getSellerPhone());
+                                downloadAndSendWhatsAppImage(getActivity(), cleanNumber, message, listing.getImageUrl());
 
                             }
                         });
+
                         if (listing.getListingSource().equals("individual")) {
                             btnPatron.setOnClickListener(new View.OnClickListener() {
                                 public void onClick(View v) {
-
-                                    requestPermission(resource);
+                                    String message = "Say something";
+                                    String cleanNumber = cleanPhoneNumber(listing.getSellerPhone());
+                                    downloadAndSendWhatsAppImage(getActivity(), cleanNumber, message, listing.getImageUrl());
 
                                 }
                             });
@@ -837,8 +845,9 @@ public class ProductDetailsFragment extends Fragment implements CallBackListener
 
                             btnChat.setOnClickListener(new View.OnClickListener() {
                                 public void onClick(View v) {
-
-                                    requestPermission(resource);
+                                    String message = "Say something";
+                                    String cleanNumber = cleanPhoneNumber(listing.getSellerPhone());
+                                    downloadAndSendWhatsAppImage(getActivity(), cleanNumber, message, listing.getImageUrl());
 
                                 }
                             });
@@ -851,27 +860,92 @@ public class ProductDetailsFragment extends Fragment implements CallBackListener
                 });
 
     }
+    private String cleanPhoneNumber(String phoneNumber) {
+        return phoneNumber.replaceFirst("^\\+", "");
+    }
+    private void downloadAndSendWhatsAppImage(Context context, String phoneNumber, String message, String imageUrl) {
+        new Thread(() -> {
+            try {
+                URL url = new URL(imageUrl);
+                InputStream inputStream = url.openStream();
+                File file = new File(context.getCacheDir(), "shared_image.jpg");
 
-//    @Override
-//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-//
-//        if (requestCode == REQUEST_PERMISSIONS_CODE) {
-//            boolean allGranted = true;
-//            for (int result : grantResults) {
-//                if (result != PackageManager.PERMISSION_GRANTED) {
-//                    allGranted = false;
-//                    break;
-//                }
-//            }
-//
-//            if (allGranted && pendingResource != null) {
-//                proceedWithChatLogic(pendingResource);
-//            } else {
-//                Toast.makeText(getActivity(), "Permission Denied", Toast.LENGTH_SHORT).show();
-//            }
-//        }
-//    }
+                FileOutputStream outputStream = new FileOutputStream(file);
+                byte[] buffer = new byte[4096];
+                int bytesRead;
+
+                while ((bytesRead = inputStream.read(buffer)) != -1) {
+                    outputStream.write(buffer, 0, bytesRead);
+                }
+
+                outputStream.close();
+                inputStream.close();
+
+                Uri uri = FileProvider.getUriForFile(context, context.getPackageName() + ".provider", file);
+
+                // Post to main thread
+                new Handler(Looper.getMainLooper()).post(() -> {
+                    sendWhatsAppMessageWithImage(context, phoneNumber, message, uri);
+                });
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                new Handler(Looper.getMainLooper()).post(() ->
+                        Toast.makeText(context, "Failed to download image", Toast.LENGTH_SHORT).show()
+                );
+            }
+        }).start();
+    }
+
+    private void sendWhatsAppMessageWithImage(Context context, String phoneNumber, String message, Uri imageUri) {
+        PackageManager packageManager = context.getPackageManager();
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_SEND);
+        intent.setType("image/*");
+
+        intent.putExtra(Intent.EXTRA_STREAM, imageUri);
+        intent.putExtra(Intent.EXTRA_TEXT, message);
+        intent.putExtra("jid", phoneNumber + "@s.whatsapp.net");
+
+        try {
+            // Try WhatsApp Business first
+            intent.setPackage("com.whatsapp.w4b");
+            if (intent.resolveActivity(packageManager) != null) {
+                context.startActivity(intent);
+            } else {
+                intent.setPackage("com.whatsapp");
+                if (intent.resolveActivity(packageManager) != null) {
+                    context.startActivity(intent);
+                } else {
+                    Toast.makeText(context, "Neither WhatsApp nor WhatsApp Business is installed.", Toast.LENGTH_SHORT).show();
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(context, "Error opening WhatsApp", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if (requestCode == REQUEST_PERMISSIONS_CODE) {
+            boolean allGranted = true;
+            for (int result : grantResults) {
+                if (result != PackageManager.PERMISSION_GRANTED) {
+                    allGranted = false;
+                    break;
+                }
+            }
+
+            if (allGranted && pendingResource != null) {
+                proceedWithChatLogic(pendingResource);
+            } else {
+                Toast.makeText(getActivity(), "Permission Denied", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
 
     private final ActivityResultLauncher<String[]> permissionLauncher =
             registerForActivityResult(new ActivityResultContracts.RequestMultiplePermissions(), result -> {
@@ -925,6 +999,16 @@ public class ProductDetailsFragment extends Fragment implements CallBackListener
     }
 
     private void openWhatsApp(String number) {
+
+
+
+
+
+
+
+
+
+
         try {
             number = number.replace(" ", "").replace("+", "");
 

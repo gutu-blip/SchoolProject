@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/coordinator"
@@ -130,9 +129,8 @@
                     android:layout_margin="10dp"
                     app:cardCornerRadius="33dp"
                     app:cardElevation="6dp"
-                    app:layout_constraintBottom_toTopOf="@id/btn_chat"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    >
+                    app:layout_constraintBottom_toTopOf="@id/btn_chat">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/constraintLayout"
@@ -150,16 +148,16 @@
                             android:elevation="20dp"
                             android:outlineAmbientShadowColor="@color/accent_red"
                             android:outlineSpotShadowColor="@color/accent_red"
+                            android:src="@drawable/ic_left_arrow"
+                            android:visibility="gone"
                             app:fab_shadowColor="@color/accent_red"
                             app:fab_shadowRadius="60dp"
                             app:fab_showShadow="true"
                             app:fab_size="mini"
-                            android:visibility="gone"
-                            app:maxImageSize="50dp"
-                            android:src="@drawable/ic_left_arrow"
+                            app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:maxImageSize="50dp"
                             tools:ignore="DuplicateIds" />
 
                         <androidx.viewpager2.widget.ViewPager2
@@ -188,35 +186,65 @@
                             app:layout_constraintTop_toTopOf="parent">
 
 
+                            <!--                            <androidx.cardview.widget.CardView-->
+                            <!--                                android:id="@+id/cv_share"-->
+                            <!--                                android:layout_width="50dp"-->
+                            <!--                                android:layout_height="50dp"-->
+                            <!--                                android:layout_marginTop="10dp"-->
+                            <!--                                app:cardBackgroundColor="@android:color/transparent"-->
+                            <!--                                app:cardCornerRadius="25dp"-->
+                            <!--                                app:cardElevation="0dp">-->
+
+                            <!--                                <FrameLayout-->
+                            <!--                                    android:id="@+id/blur_share"-->
+                            <!--                                    android:layout_width="match_parent"-->
+                            <!--                                    android:layout_height="match_parent"-->
+                            <!--                                    android:background="#19335795">-->
+
+                            <!--                                    <ImageButton-->
+                            <!--                                        android:id="@+id/btn_share"-->
+                            <!--                                        android:layout_width="match_parent"-->
+                            <!--                                        android:layout_height="match_parent"-->
+                            <!--                                        android:layout_gravity="center"-->
+                            <!--                                        android:backgroundTint="@android:color/transparent"-->
+                            <!--                                        android:scaleX="1.2"-->
+                            <!--                                        android:scaleY="1.2"-->
+                            <!--                                        android:src="@drawable/ic_baseline_share"-->
+                            <!--                                        app:tint="@color/virtual_black"-->
+                            <!--                                        />-->
+
+                            <!--                                </FrameLayout>-->
+
+                            <!--                            </androidx.cardview.widget.CardView>-->
+
                             <androidx.cardview.widget.CardView
                                 android:id="@+id/cv_share"
                                 android:layout_width="50dp"
                                 android:layout_height="50dp"
                                 android:layout_marginTop="10dp"
-                                app:cardBackgroundColor="@android:color/transparent"
+                                android:elevation="6dp"
+                                app:cardBackgroundColor="#80FFFFFF"
                                 app:cardCornerRadius="25dp"
-                                app:cardElevation="0dp">
+                                app:cardElevation="6dp">
 
                                 <FrameLayout
-                                    android:id="@+id/blur_share"
+                                    android:id="@+id/frame_share"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:background="#19335795">
+                                    android:background="@android:color/transparent">
 
                                     <ImageButton
                                         android:id="@+id/btn_share"
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
                                         android:layout_gravity="center"
-                                        android:backgroundTint="@android:color/transparent"
-                                        android:scaleX="1.2"
-                                        android:scaleY="1.2"
+                                        android:background="@drawable/bg_share_button"
+                                        android:padding="8dp"
+                                        android:scaleType="centerInside"
                                         android:src="@drawable/ic_baseline_share"
-                                        app:tint="@color/virtual_black"
-                                        />
+                                        app:tint="@color/virtual_black" />
 
                                 </FrameLayout>
-
                             </androidx.cardview.widget.CardView>
 
                             <androidx.cardview.widget.CardView
@@ -257,9 +285,10 @@
                             android:layout_gravity="end"
                             android:layout_marginTop="10dp"
                             android:layout_marginEnd="8dp"
-                            app:cardBackgroundColor="@android:color/transparent"
+                            app:cardBackgroundColor="#80FFFFFF"
                             app:cardCornerRadius="25dp"
-                            app:cardElevation="0dp"
+                            app:cardElevation="8dp"
+                            app:cardUseCompatPadding="true"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/relativelayout1">
 
@@ -267,7 +296,7 @@
                                 android:id="@+id/blur_like"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:background="#19335795">
+                                android:background="@android:color/transparent"> <!-- No dark background anymore -->
 
                                 <ImageButton
                                     android:id="@+id/btn_heart"
@@ -322,6 +351,7 @@
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.cardview.widget.CardView>
+
                 <Button
                     android:id="@+id/btn_chat"
                     android:layout_width="wrap_content"
@@ -331,7 +361,6 @@
                     android:backgroundTint="@color/accent_lime"
                     android:paddingHorizontal="10dp"
                     android:text="Contact"
-                    android:visibility="gone"
                     android:textAllCaps="false"
                     android:textColor="@color/black"
                     android:textSize="20sp"
@@ -359,10 +388,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
                     android:layout_marginEnd="6dp"
+                    android:text="24434"
                     android:textAllCaps="false"
                     android:textColor="@color/Black"
                     android:textSize="24sp"
-                    android:text="24434"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/cardview" />
@@ -414,8 +443,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="6dp"
-                            android:textAllCaps="false"
                             android:text="Aj Pants Travis"
+                            android:textAllCaps="false"
                             android:textColor="@color/Black"
                             android:textSize="19sp"
                             android:textStyle="bold"
@@ -439,11 +468,11 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="6dp"
+                            android:text="New"
                             android:textAllCaps="false"
                             android:textColor="@color/Black"
                             android:textSize="19sp"
                             android:textStyle="bold"
-                            android:text="New"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/header_condition" />
 
@@ -465,10 +494,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-medium"
+                            android:maxLines="5"
+                            android:text="@string/dummytext"
                             android:textAllCaps="false"
                             android:textColor="@color/Black"
-                            android:text="@string/dummytext"
-                            android:maxLines="5"
                             android:textSize="17sp"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/header_desc" />
@@ -489,8 +518,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-medium"
-                            android:textAllCaps="false"
                             android:text="Multimedia University"
+                            android:textAllCaps="false"
                             android:textColor="@color/Black"
                             android:textSize="17sp"
                             app:layout_constraintStart_toStartOf="parent"
@@ -516,9 +545,8 @@
                             android:textColor="@color/Black"
                             android:textSize="16sp"
                             android:textStyle="bold"
-                            app:layout_constraintTop_toBottomOf="@id/header_hostel"
                             app:layout_constraintStart_toStartOf="parent"
-                            />
+                            app:layout_constraintTop_toBottomOf="@id/header_hostel" />
 
                         <TextView
                             android:id="@+id/header_room"
@@ -552,9 +580,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="5dp"
+                    android:text="Similar"
                     android:textColor="@color/black"
                     android:textSize="22sp"
-                    android:text="Similar"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/cv_details" />
@@ -569,17 +597,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="5dp"
-        tools:listitem="@layout/item_product"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:listitem="@layout/item_product" />
 
     <TextView
         android:id="@+id/tv_placeholder"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:text="No similar listings yet"
         android:textColor="#4E4E4E"
         android:textSize="20sp"
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

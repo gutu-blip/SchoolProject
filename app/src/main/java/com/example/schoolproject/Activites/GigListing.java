@@ -305,16 +305,16 @@ public class GigListing extends AppCompatActivity implements LoadText {
                     bottomSheetBehavior.setPeekHeight(0);
                     bottomSheetBehavior.setHideable(false);
 
-                    if (btmSheetAdapter.getSelectedItem() != null) {
-                        String item = btmSheetAdapter.getSelectedItem().getItem();
-
-                        if (filler.equals("category")) {
-                            mCategory.setText(item);
-                        } else if (filler.equals("college")) {
-                            mCollege.setText(item);
-                        }
-                    }
-                    filler = "";
+//                    if (btmSheetAdapter.getSelectedItem() != null) {
+//                        String item = btmSheetAdapter.getSelectedItem().getItem();
+//
+//                        if (filler.equals("category")) {
+//                            mCategory.setText(item);
+//                        } else if (filler.equals("college")) {
+//                            mCollege.setText(item);
+//                        }
+//                    }
+//                    filler = "";
 
                 } else {
 
@@ -360,10 +360,11 @@ public class GigListing extends AppCompatActivity implements LoadText {
                 }
             }
         });
+
         btmRecyclerview = bottomsheetLayout.findViewById(R.id.recyclerview);
+        btmRecyclerview.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
         btmProgressCircle = bottomsheetLayout.findViewById(R.id.progress_circle);
-        btmProgressCircle.setVisibility(View.GONE);
-        btmRecyclerview.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL,false));
+        btmProgressCircle.setVisibility(View.INVISIBLE);
     }
 
     private void initWidgets() {

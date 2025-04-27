@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -31,6 +32,8 @@ public class Register extends AppCompatActivity {
     private final static int RC_SIGN_IN = 123;
     private FirebaseAuth mAuth;
     Context context = Register.this;
+    ProgressBar progressCircle;
+    View dimOverlay;
 
     @Override
     protected void onStart() {
@@ -53,6 +56,9 @@ public class Register extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         createRequest();
+        progressCircle = findViewById(R.id.progressBar);
+        dimOverlay = findViewById(R.id.dimOverlay);
+        progressCircle.setVisibility(View.INVISIBLE);
 
         findViewById(R.id.cv_google).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,6 +68,12 @@ public class Register extends AppCompatActivity {
         });
     }
 
+    private void signIn() {
+        progressCircle.setVisibility(View.VISIBLE);
+
+        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+        startActivityForResult(signInIntent, RC_SIGN_IN);
+    }
 
     private void createRequest() {
         // Configure Google Sign In
@@ -73,14 +85,6 @@ public class Register extends AppCompatActivity {
         // Build a GoogleSignInClient with the options specified by gso.
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
     }
-
-
-    private void signIn() {
-        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-        startActivityForResult(signInIntent, RC_SIGN_IN);
-
-    }
-
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
